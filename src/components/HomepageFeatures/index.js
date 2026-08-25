@@ -8,7 +8,6 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_silver_wolf_lv999.svg').default,
     description: (
       <>
-        <p>【角色详情】</p>
         <p>将宇宙视为游戏的超级骇客。</p>
         <p>无论怎样棘手的防御系统，银狼都能轻松破解。她与「天才俱乐部」螺丝咕姆的数据攻防战，现已成为骇客界的传说。</p>
         <p>宇宙中还有多少亟待攻破的关卡？银狼对此十分期待。</p>
@@ -37,6 +36,7 @@ const FeatureList = [
         <p>名为「地下室」的游戏，在这一天结束了。</p>
 
         <br/> 
+        <br/> 
 
         <p>【角色故事·二】</p>
         <p>她一路向西，穿过大荒野，来到废品山。</p>
@@ -61,6 +61,7 @@ const FeatureList = [
         <p>名为「废品山」的游戏，在这一天结束了。</p>
 
         <br/> 
+        <br/> 
 
         <p>【角色故事·三】</p>
         <p>她站在虹霓都市最高的大厦顶端，从这里可以望见她出生的地方。</p>
@@ -82,6 +83,7 @@ const FeatureList = [
         <p><em>「好无聊啊。」</em></p>
         <p>名为「虹霓都市」的游戏，在这一天结束了。</p>
 
+        <br/> 
         <br/> 
 
         <p>【角色故事·四】</p>
