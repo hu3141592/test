@@ -5,11 +5,9 @@
   width: 100%;
 }
 
-/**
- * 磨砂玻璃卡片样式
- */
 .featureCard {
-  background: rgba(255, 255, 255, 0.12);
+  /* 备用半透明背景，确保无磨砂时也可读 */
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 32px;
@@ -21,6 +19,8 @@
   color: #fff;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
 }
 
 .featureCard:hover {
@@ -46,7 +46,7 @@
 
 .featureDescription em {
   font-style: italic;
-  color: #ffd966; /* 斜体文字用金色突出，可自定 */
+  color: #ffd966;
 }
 
 @media screen and (max-width: 996px) {
@@ -61,4 +61,11 @@
   .featureDescription p {
     font-size: 1rem;
   }
+}
+
+/* 暗色模式卡片样式 */
+[data-theme='dark'] .featureCard {
+  background: rgba(0, 0, 0, 0.45);   /* 暗色备用背景 */
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
