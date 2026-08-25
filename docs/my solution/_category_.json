@@ -1,7 +1,8 @@
 {
   "label": "My - Solutions",
-  "position": 3,
+  "position": 2,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "Here to put the solutions past."
   }
 }
