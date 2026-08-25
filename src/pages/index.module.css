@@ -40,7 +40,7 @@
   align-items: center;
   text-align: center;
   background: transparent !important;
-  color: #fff;
+  color: #c1ecfc;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
   padding: 25vh 1rem 0 1rem;   /* 原来为 3rem，现改为 25vh */
 }
@@ -87,9 +87,4 @@
   background: rgba(0, 0, 0, 0.45);          /* 深色半透明，比浅色模式更暗 */
   border-color: rgba(255, 255, 255, 0.08);  /* 边框更淡 */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7); /* 阴影加深 */
-}
-
-/* 亮色模式：标题颜色稍亮，与深灰边框对比 */
-[data-theme='light'] .heroTitle {
-  color: #798cdf;
 }
