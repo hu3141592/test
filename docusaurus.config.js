@@ -8,7 +8,7 @@ import rehypeKatex from 'rehype-katex';
 const config = {
   // 网站基本信息
   title: 'olD_mOwOn',
-  tagline: 'A common websiteW',
+  tagline: 'A common website',
   favicon: 'img/favicon.ico',
 
   // 网站语言设置
