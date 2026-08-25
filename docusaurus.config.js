@@ -69,7 +69,7 @@ const config = {
 
         blog: {
           // 博客页面中文标题和描述
-          blogTitle: '博客',
+          blogTitle: 'Blog',
           blogDescription: '记录学习、思考与实践。',
 
           // 数学公式支持
@@ -135,7 +135,7 @@ const config = {
 
       // 顶部导航栏
       navbar: {
-        title: '我的网站',
+        title: 'olD_mOwOn',
         logo: {
           alt: '我的网站 Logo',
           src: 'img/logo.svg',
@@ -145,11 +145,11 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: '文档',
+            label: 'docs',
           },
           {
             to: '/blog',
-            label: '博客',
+            label: 'blog',
             position: 'left',
           },
           {
@@ -165,11 +165,11 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: '文档',
+            title: 'To',
             items: [
               {
-                label: '教程首页',
-                to: '/docs/intro',
+                label: '首页',
+                to: '/',
               },
             ],
           },
@@ -177,11 +177,11 @@ const config = {
             title: '学习资源',
             items: [
               {
-                label: '博客文章',
+                label: 'blog',
                 to: '/blog',
               },
               {
-                label: '开始使用',
+                label: 'docs',
                 to: '/docs/intro',
               },
             ],
@@ -191,7 +191,11 @@ const config = {
             items: [
               {
                 label: 'GitHub 项目',
-                href: 'https://github.com/你的用户名/你的仓库名',
+                href: 'https://github.com/hu3141592/test',
+              },
+              {
+                label: 'B站主页',
+                href: 'https://space.bilibili.com/88941445',
               },
             ],
           },
