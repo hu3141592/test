@@ -69,3 +69,16 @@
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
+
+/* 亮色模式：卡片文字黑色，背景更亮，边框变暗 */
+[data-theme='light'] .featureCard {
+  background: rgba(255, 255, 255, 0.5);   /* 更亮的半透明白 */
+  color: #000;                            /* 黑色文字 */
+  text-shadow: none;                      /* 取消文字阴影 */
+  border-color: rgba(0, 0, 0, 0.1);       /* 浅灰色边框 */
+}
+
+/* 斜体文字亮色模式改为深金色 */
+[data-theme='light'] .featureDescription em {
+  color: #b8860b;
+}

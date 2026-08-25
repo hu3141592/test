@@ -48,9 +48,14 @@
 .heroTitle {
   font-size: 5rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   margin: 0;
-  color: #d9f9fa;              /* 新增：淡蓝色 */
+  text-shadow:
+    -1px -1px 0 #444,
+     1px -1px 0 #444,
+    -1px  1px 0 #444,
+     1px  1px 0 #444,
+     0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 @media screen and (max-width: 996px) {
@@ -82,4 +87,9 @@
   background: rgba(0, 0, 0, 0.45);          /* 深色半透明，比浅色模式更暗 */
   border-color: rgba(255, 255, 255, 0.08);  /* 边框更淡 */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7); /* 阴影加深 */
+}
+
+/* 亮色模式：标题颜色稍亮，与深灰边框对比 */
+[data-theme='light'] .heroTitle {
+  color: #798cdf;
 }
