@@ -35,8 +35,8 @@ const config = {
 
   // GitHub Pages 配置
   // 如果以后部署到 GitHub，请改成你自己的用户名和仓库名
-  organizationName: 'olD_mOwOn',
-  projectName: 'your-repository-name',
+  organizationName: 'hu3141592',
+  projectName: 'test',
 
   // 遇到链接错误时直接报错，便于及时发现问题
   onBrokenLinks: 'throw',
@@ -111,11 +111,11 @@ const config = {
       metadata: [
         {
           name: 'keywords',
-          content: '中文教程, 技术文档, 学习笔记, 博客',
+          content: 'hu3141592, olD_mOwOn, cxsx, 博客, 文档, 文章',
         },
         {
           name: 'description',
-          content: '一个记录学习、技术与实践的中文网站。',
+          content: 'olD_mOwOn的个人网站',
         },
       ],
 
@@ -145,7 +145,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: '文档教程',
+            label: '文档',
           },
           {
             to: '/blog',
@@ -153,13 +153,8 @@ const config = {
             position: 'left',
           },
           {
-            to: '/docs/intro',
-            label: '开始使用',
-            position: 'left',
-          },
-          {
-            href: 'https://github.com/你的用户名/你的仓库名',
-            label: '源代码',
+            href: 'https://github.com/hu3141592/test',
+            label: 'Github',
             position: 'right',
           },
         ],
