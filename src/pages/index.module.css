@@ -1,23 +1,85 @@
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * 背景层：固定全屏，纯 CSS 背景图片，无遮罩
  */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 
-.heroBanner {
-  padding: 3rem 0;
-  text-align: center;
+  /* 背景图片路径确保正确 */
+  background-image: url('/img/undraw_docusaurus_silver_wolf_lv999.svg');
+  background-size: cover;
+  background-position: center 30%; /* 调整使银狼主体可见 */
+  background-repeat: no-repeat;
+
+  /* 移除遮罩：不设置 background-color 和 blend-mode */
+}
+
+/**
+ * 内容层：相对定位，确保显示在背景之上
+ */
+.content {
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+ * Hero 横幅：高度 85vh，标题靠上（flex-start），增加顶部内边距
+ */
+.heroBanner {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background: transparent !important;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  padding: 25vh 1rem 0 1rem;   /* 原来为 3rem，现改为 25vh */
+}
+
+.heroTitle {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #d9f9fa;              /* 新增：淡蓝色 */
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    min-height: 80vh;
+    padding-top: 2rem;
+  }
+  .heroTitle {
+    font-size: 3rem;
   }
 }
 
+/* 按钮样式（如需启用） */
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/**
+ * 深色模式下，为背景图片叠加一层半透明遮罩（比之前的遮罩更亮）
+ */
+[data-theme='dark'] .background {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: multiply;
+}
+
+[data-theme='dark'] .featureCard {
+  background: rgba(0, 0, 0, 0.45);          /* 深色半透明，比浅色模式更暗 */
+  border-color: rgba(255, 255, 255, 0.08);  /* 边框更淡 */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7); /* 阴影加深 */
 }

@@ -5,14 +5,13 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: '【 银狼 Lv.999 】',
-    Svg: require('@site/static/img/undraw_docusaurus_silver_wolf_lv999.svg').default,
     description: (
       <>
         <p>将宇宙视为游戏的超级骇客。</p>
         <p>无论怎样棘手的防御系统，银狼都能轻松破解。她与「天才俱乐部」螺丝咕姆的数据攻防战，现已成为骇客界的传说。</p>
         <p>宇宙中还有多少亟待攻破的关卡？银狼对此十分期待。</p>
 
-        <br/> 
+        <br />
 
         <p>【角色故事·一】</p>
         <p>她玩着摇杆，日复一日。</p>
@@ -35,8 +34,8 @@ const FeatureList = [
         <p>那晚，快餐店唯一的员工和女主人告别，成为了下一个离开的人。</p>
         <p>名为「地下室」的游戏，在这一天结束了。</p>
 
-        <br/> 
-        <br/> 
+        <br />
+        <br />
 
         <p>【角色故事·二】</p>
         <p>她一路向西，穿过大荒野，来到废品山。</p>
@@ -60,8 +59,8 @@ const FeatureList = [
         <p>中间人沉默半晌，看了看她，又抬头看了看天空，最后转过身，把一箱金块扔在地上。</p>
         <p>名为「废品山」的游戏，在这一天结束了。</p>
 
-        <br/> 
-        <br/> 
+        <br />
+        <br />
 
         <p>【角色故事·三】</p>
         <p>她站在虹霓都市最高的大厦顶端，从这里可以望见她出生的地方。</p>
@@ -79,12 +78,12 @@ const FeatureList = [
         <p>她站在虹霓都市最高的大厦顶端，从这里可以望见她出生的地方。</p>
         <p>她站得太高，以致身边容不下第二个人。</p>
         <p>但她还要抬起头，往更高的地方看去，她看见星空就在那里，近在咫尺，又遥不可及。</p>
-        
+
         <p><em>「好无聊啊。」</em></p>
         <p>名为「虹霓都市」的游戏，在这一天结束了。</p>
 
-        <br/> 
-        <br/> 
+        <br />
+        <br />
 
         <p>【角色故事·四】</p>
         <p>她站在椅子上，擦着街机屏幕，打着圈，一遍又一遍，像是要擦掉每一粒灰尘。</p>
@@ -112,15 +111,16 @@ const FeatureList = [
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({ title, description }) {
   return (
-    <div className={clsx('col col--12')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
+    <div className={clsx('col col--12', styles.featureCard)}>
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <Heading as="h3" className={styles.featureTitle}>
+          {title}
+        </Heading>
+        <div className={styles.featureDescription}>
+          {description}
+        </div>
       </div>
     </div>
   );

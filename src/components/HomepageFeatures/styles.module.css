@@ -5,7 +5,60 @@
   width: 100%;
 }
 
-.featureSvg {
-  height: 650px;
-  width: 900px;
+/**
+ * 磨砂玻璃卡片样式
+ */
+.featureCard {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 32px;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem auto;
+  max-width: 900px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.featureTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.featureDescription p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+}
+
+.featureDescription em {
+  font-style: italic;
+  color: #ffd966; /* 斜体文字用金色突出，可自定 */
+}
+
+@media screen and (max-width: 996px) {
+  .featureCard {
+    padding: 1.5rem;
+    margin: 0.8rem 0.5rem;
+    border-radius: 24px;
+  }
+  .featureTitle {
+    font-size: 2rem;
+  }
+  .featureDescription p {
+    font-size: 1rem;
+  }
 }
