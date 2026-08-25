@@ -1,46 +1,49 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
-
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  // 网站基本信息
+  title: 'olD_mOwOn',
+  tagline: 'A common websiteW',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  // 网站语言设置
+  i18n: {
+    defaultLocale: 'zh-Hans',
+    locales: ['zh-Hans'],
+    localeConfigs: {
+      'zh-Hans': {
+        label: '简体中文',
+      },
+    },
   },
 
-  // Set the production url of your site here
+  // Docusaurus v4 相关配置
+  future: {
+    v4: true,
+  },
+
+  // 网站正式部署地址
+  // 如果目前只在本地运行，可以暂时保留下面的地址
+  // 发布到 GitHub Pages 时，需要改成你的真实网址
   url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // GitHub Pages 配置
+  // 如果以后部署到 GitHub，请改成你自己的用户名和仓库名
+  organizationName: 'olD_mOwOn',
+  projectName: 'your-repository-name',
 
+  // 遇到链接错误时直接报错，便于及时发现问题
   onBrokenLinks: 'throw',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   presets: [
@@ -49,31 +52,48 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          rehypePlugins: [rehypeKatex],
+          // 数学公式支持
           remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
+
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+
+          // 显示最后更新时间
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: false,
+
+          // 暂时没有设置 GitHub 编辑地址，因此先隐藏“编辑此页”链接
+          // 以后有自己的 GitHub 仓库后，可以取消下面的注释并修改地址
+          // editUrl: 'https://github.com/你的用户名/你的仓库名/tree/main/',
         },
+
         blog: {
-          rehypePlugins: [rehypeKatex],
+          // 博客页面中文标题和描述
+          blogTitle: '博客',
+          blogDescription: '记录学习、思考与实践。',
+
+          // 数学公式支持
           remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
+
           showReadingTime: true,
+          showLastUpdateTime: true,
+
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+
+          // 暂时隐藏“编辑此页”链接
+          // 以后有自己的 GitHub 仓库后再启用
+          // editUrl: 'https://github.com/你的用户名/你的仓库名/tree/main/',
+
+          // 没有摘要分隔符时给出提醒
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
+
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -84,15 +104,40 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
+      // 网站分享卡片
       image: 'img/docusaurus-social-card.jpg',
+
+      // 浏览器标签页和搜索引擎描述
+      metadata: [
+        {
+          name: 'keywords',
+          content: '中文教程, 技术文档, 学习笔记, 博客',
+        },
+        {
+          name: 'description',
+          content: '一个记录学习、技术与实践的中文网站。',
+        },
+      ],
+
+      // 主题颜色设置
       colorMode: {
+        defaultMode: 'light',
         respectPrefersColorScheme: true,
+        disableSwitch: false,
       },
+
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
+      },
+
+      // 顶部导航栏
       navbar: {
-        title: 'My Site',
+        title: '我的网站',
         logo: {
-          alt: 'My Site Logo',
+          alt: '我的网站 Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -100,72 +145,80 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: '文档教程',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            to: '/blog',
+            label: '博客',
+            position: 'left',
+          },
+          {
+            to: '/docs/intro',
+            label: '开始使用',
+            position: 'left',
+          },
+          {
+            href: 'https://github.com/你的用户名/你的仓库名',
+            label: '源代码',
             position: 'right',
           },
         ],
       },
+
+      // 底部页脚
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '文档',
             items: [
               {
-                label: 'Tutorial',
+                label: '教程首页',
                 to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'Community',
+            title: '学习资源',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: '博客文章',
+                to: '/blog',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
+                label: '开始使用',
+                to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'More',
+            title: '相关链接',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'GitHub 项目',
+                href: 'https://github.com/你的用户名/你的仓库名',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `版权所有 © ${new Date().getFullYear()} 我的网站。使用 Docusaurus 构建。`,
       },
+
+      // 代码高亮主题
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'java', 'python', 'json', 'yaml'],
       },
     }),
-    stylesheets: [
-      {
-        href: 'https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css',
-        type: 'text/css',
-      },
-    ],
+
+  // 数学公式所需的 KaTeX 样式
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css',
+      type: 'text/css',
+    },
+  ],
 };
 
 export default config;
