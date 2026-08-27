@@ -1,26 +1,31 @@
 /**
- * 背景层：固定全屏，纯 CSS 背景图片，无遮罩
+ * 首页样式
+ * 背景层固定全屏，内容层相对定位，Hero 区域使用大号标题并调整位置
  */
+
+/* ===========================
+   背景层：固定全屏，显示背景图片
+   =========================== */
 .background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
-
-  /* 背景图片路径确保正确 */
+  z-index: 0; /* 覆盖 body 背景 */
+  
   background-image: url('/img/undraw_docusaurus_silver_wolf_lv999.svg');
   background-size: cover;
-  background-position: center 30%; /* 调整使银狼主体可见 */
+  background-position: center 30%;
   background-repeat: no-repeat;
-
-  /* 移除遮罩：不设置 background-color 和 blend-mode */
+  
+  /* 无亮色模式，默认使用暗色背景叠加，这里设置基础背景色 */
+  background-color: #1b1146;
 }
 
-/**
- * 内容层：相对定位，确保显示在背景之上
- */
+/* ===========================
+   内容层：相对定位，覆盖在背景之上
+   =========================== */
 .content {
   position: relative;
   z-index: 1;
@@ -29,9 +34,9 @@
   flex-direction: column;
 }
 
-/**
- * Hero 横幅：高度 85vh，标题靠上（flex-start），增加顶部内边距
- */
+/* ===========================
+   Hero 横幅
+   =========================== */
 .heroBanner {
   min-height: 85vh;
   display: flex;
@@ -40,24 +45,32 @@
   align-items: center;
   text-align: center;
   background: transparent !important;
-  color: #c1ecfc;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-  padding: 25vh 1rem 0 1rem;   /* 原来为 3rem，现改为 25vh */
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  padding: 25vh 1rem 0 1rem;
 }
 
+/* ===========================
+   Hero 标题样式（青粉紫渐变霓虹效果）
+   =========================== */
 .heroTitle {
   font-size: 5rem;
   font-weight: 700;
   letter-spacing: 4px;
   margin: 0;
-  text-shadow:
-    -1px -1px 0 #444,
-     1px -1px 0 #444,
-    -1px  1px 0 #444,
-     1px  1px 0 #444,
-     0 0 8px rgba(0, 0, 0, 0.4);
+  /* 渐变文字 */
+  background: linear-gradient(135deg, #00f0ff 0%, #f14db5 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* 霓虹发光 */
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.7))
+          drop-shadow(0 0 20px rgba(241, 77, 181, 0.5));
+  /* 备用文字阴影（如果浏览器不支持 background-clip: text） */
+  text-shadow: none;
 }
 
+/* 响应式调整 */
 @media screen and (max-width: 996px) {
   .heroBanner {
     min-height: 80vh;
@@ -68,23 +81,35 @@
   }
 }
 
-/* 按钮样式（如需启用） */
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/**
- * 深色模式下，为背景图片叠加一层半透明遮罩（比之前的遮罩更亮）
- */
+/* ===========================
+   暗色模式背景：调亮处理，降低遮罩暗度，使背景更清晰
+   =========================== */
 [data-theme='dark'] .background {
-  background-color: rgba(0, 0, 0, 0.25);
-  background-blend-mode: multiply;
+  background:
+    linear-gradient(135deg, rgba(27, 17, 70, 0.35) 0%, rgba(11, 6, 32, 0.5) 100%),
+    url('/img/undraw_docusaurus_silver_wolf_lv999.svg') center 30% / cover no-repeat;
 }
 
-[data-theme='dark'] .featureCard {
-  background: rgba(0, 0, 0, 0.45);          /* 深色半透明，比浅色模式更暗 */
-  border-color: rgba(255, 255, 255, 0.08);  /* 边框更淡 */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7); /* 阴影加深 */
+/* ===========================
+   博客侧边栏定位修正
+   =========================== */
+
+/* 侧边栏容器：使用 sticky 定位，让它跟随滚动但始终在导航栏下方 */
+.blog-sidebar {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  max-height: calc(100vh - var(--ifm-navbar-height));
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* 当侧边栏折叠时，隐藏内容但保留按钮 */
+.blog-sidebar.menu--collapsed .menu__list {
+  display: none;
+}
+
+.blog-sidebar.menu--collapsed {
+  width: auto;
+  padding: 0.5rem;
 }

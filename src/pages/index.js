@@ -11,7 +11,7 @@ function HomepageHeader() {
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className={styles.heroTitle}>
-          {siteConfig.title}
+          游戏就只是为了游戏，仅此而已
         </Heading>
         {/* 如有副标题或按钮，可取消注释 */}
       </div>
@@ -19,7 +19,7 @@ function HomepageHeader() {
   );
 }
 
-export default function Home() {
+export default function Home(){
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout

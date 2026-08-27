@@ -1,3 +1,11 @@
+/**
+ * HomepageFeatures 组件样式
+ * 卡片采用毛玻璃效果，亮暗模式自适应
+ */
+
+/* ===========================
+   特性区域：弹性布局，居中
+   =========================== */
 .features {
   display: flex;
   align-items: center;
@@ -5,50 +13,67 @@
   width: 100%;
 }
 
+/* ===========================
+   卡片本身
+   - 使用毛玻璃效果，半透明背景，模糊滤镜
+   - 圆角、阴影、边框
+   - 悬停微抬升
+   =========================== */
 .featureCard {
-  /* 备用半透明背景，确保无磨砂时也可读 */
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 32px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--ifm-global-radius);
   padding: 2rem 2.5rem;
   margin: 1.5rem auto;
   max-width: 900px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  color: var(--ifm-font-color-base);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* 轻微文字阴影 */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   transform: translateZ(0);
   will-change: backdrop-filter;
 }
 
+/* 悬停效果 */
 .featureCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--ifm-global-shadow-md);
 }
 
+/* ===========================
+   卡片标题
+   =========================== */
 .featureTitle {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 0.5rem;
   display: inline-block;
+  color: var(--ifm-heading-color);
 }
 
+/* ===========================
+   卡片正文段落
+   =========================== */
 .featureDescription p {
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 0.8rem;
 }
 
+/* 斜体文字使用金黄色 */
 .featureDescription em {
   font-style: italic;
-  color: #ffd966;
+  color: #e6b800; /* 金黄色，暗色下自动变亮 */
 }
 
+/* ===========================
+   响应式调整
+   =========================== */
 @media screen and (max-width: 996px) {
   .featureCard {
     padding: 1.5rem;
@@ -63,22 +88,33 @@
   }
 }
 
-/* 暗色模式卡片样式 */
+/* ===========================
+   暗色模式卡片样式
+   - 背景更深，边框更淡，阴影更重
+   =========================== */
 [data-theme='dark'] .featureCard {
-  background: rgba(0, 0, 0, 0.45);   /* 暗色备用背景 */
+  background: rgba(20, 22, 30, 0.65);
   border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* 亮色模式：卡片文字黑色，背景更亮，边框变暗 */
+/* 暗色模式下标题边框颜色调整 */
+[data-theme='dark'] .featureTitle {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===========================
+   亮色模式特殊处理
+   - 亮色模式下文字用黑色，背景更白，去除文字阴影
+   - 斜体文字改为深金色
+   =========================== */
 [data-theme='light'] .featureCard {
-  background: rgba(255, 255, 255, 0.5);   /* 更亮的半透明白 */
-  color: #000;                            /* 黑色文字 */
-  text-shadow: none;                      /* 取消文字阴影 */
-  border-color: rgba(0, 0, 0, 0.1);       /* 浅灰色边框 */
+  background: rgba(255, 255, 255, 0.7);
+  color: #2c2c3a;
+  text-shadow: none;
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
-/* 斜体文字亮色模式改为深金色 */
 [data-theme='light'] .featureDescription em {
   color: #b8860b;
 }

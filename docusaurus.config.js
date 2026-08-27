@@ -67,33 +67,6 @@ const config = {
           // editUrl: 'https://github.com/你的用户名/你的仓库名/tree/main/',
         },
 
-        blog: {
-          // 博客页面中文标题和描述
-          blogTitle: 'Blog',
-          blogDescription: '记录学习、思考与实践。',
-
-          // 数学公式支持
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
-
-          showReadingTime: true,
-          showLastUpdateTime: true,
-
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-
-          // 暂时隐藏“编辑此页”链接
-          // 以后有自己的 GitHub 仓库后再启用
-          // editUrl: 'https://github.com/你的用户名/你的仓库名/tree/main/',
-
-          // 没有摘要分隔符时给出提醒
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
-
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -121,9 +94,9 @@ const config = {
 
       // 主题颜色设置
       colorMode: {
-        defaultMode: 'light',
-        respectPrefersColorScheme: true,
-        disableSwitch: false,
+        defaultMode: 'dark',
+        disableSwitch: true,      // 禁用切换按钮
+        respectPrefersColorScheme: false, // 不跟随系统，始终使用暗色
       },
 
       docs: {
@@ -146,11 +119,6 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'docs',
-          },
-          {
-            to: '/blog',
-            label: 'blog',
-            position: 'left',
           },
           {
             href: 'https://github.com/hu3141592/test',
@@ -176,10 +144,6 @@ const config = {
           {
             title: '学习资源',
             items: [
-              {
-                label: 'blog',
-                to: '/blog',
-              },
               {
                 label: 'docs',
                 to: '/docs/intro',
