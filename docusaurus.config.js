@@ -67,6 +67,8 @@ const config = {
           // editUrl: 'https://github.com/你的用户名/你的仓库名/tree/main/',
         },
 
+        blog: false,
+
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -148,6 +150,10 @@ const config = {
                 label: 'docs',
                 to: '/docs/intro',
               },
+              {
+                label: 'oi-wiki',
+                href: 'https://space.bilibili.com/88941445',
+              },
             ],
           },
           {
@@ -160,6 +166,10 @@ const config = {
               {
                 label: 'B站主页',
                 href: 'https://space.bilibili.com/88941445',
+              },
+              {
+                label: '洛谷主页',
+                href: 'https://www.luogu.com.cn/user/1420939',
               },
             ],
           },
