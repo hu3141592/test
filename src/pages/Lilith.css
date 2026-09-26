@@ -1,0 +1,159 @@
+.lilith-lock-page,
+.lilith-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 110, 196, 0.18), transparent 24%),
+    radial-gradient(circle at 80% 10%, rgba(116, 92, 255, 0.16), transparent 26%),
+    linear-gradient(180deg, #0d0718 0%, #120d1c 100%);
+  color: #f6ebff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.lilith-lock-card {
+  width: min(420px, 100%);
+  background: rgba(17, 12, 23, 0.9);
+  border: 1px solid rgba(255, 151, 214, 0.35);
+  border-radius: 26px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 28px rgba(190, 118, 255, 0.18);
+  padding: 28px 24px;
+}
+
+.lilith-lock-label {
+  margin: 0 0 10px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #c9b6d9;
+}
+
+.lilith-lock-card h1 {
+  margin: 0 0 20px;
+  font-size: 2rem;
+  color: #f7d8ff;
+}
+
+.lilith-lock-card input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 151, 214, 0.35);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.lilith-lock-card input:focus {
+  border-color: rgba(255, 181, 228, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 123, 208, 0.12);
+}
+
+.lilith-lock-card button {
+  margin-top: 18px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #be56b4, #7d5cff);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lilith-lock-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.lilith-lock-error {
+  margin-top: 14px;
+  color: #ffb7d3;
+  font-size: 0.9rem;
+}
+
+.lilith-shell {
+  width: min(980px, 100%);
+  background: rgba(17, 12, 23, 0.88);
+  border: 1px solid rgba(255, 151, 214, 0.35);
+  border-radius: 28px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 30px rgba(190, 118, 255, 0.18);
+  overflow: hidden;
+}
+
+.lilith-header {
+  padding: 28px 34px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lilith-header h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f7d8ff;
+  text-shadow: 0 0 18px rgba(255, 122, 210, 0.7);
+}
+
+.lilith-header small {
+  display: block;
+  margin-top: 12px;
+  letter-spacing: 0.18em;
+  color: #c9b6d9;
+  text-transform: uppercase;
+}
+
+.lilith-content {
+  padding: 32px 34px 40px;
+}
+
+.lilith-panel {
+  background: linear-gradient(135deg, rgba(60, 31, 77, 0.8), rgba(20, 18, 34, 0.9));
+  border: 1px solid rgba(255, 138, 214, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.lilith-panel p {
+  margin: 0 0 18px;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: #f0e8ff;
+}
+
+.lilith-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.lilith-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 123, 208, 0.12);
+  border: 1px solid rgba(255, 123, 208, 0.34);
+  color: #ffd7f0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 680px) {
+  .lilith-header,
+  .lilith-content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .lilith-panel {
+    padding: 20px 18px;
+  }
+}
