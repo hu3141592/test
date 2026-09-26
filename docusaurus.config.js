@@ -30,7 +30,7 @@ const config = {
   // 网站正式部署地址
   // 如果目前只在本地运行，可以暂时保留下面的地址
   // 发布到 GitHub Pages 时，需要改成你的真实网址
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://cxsx.vercel.app',
   baseUrl: '/',
 
   // GitHub Pages 配置
@@ -152,7 +152,7 @@ const config = {
               },
               {
                 label: 'oi-wiki',
-                href: 'https://space.bilibili.com/88941445',
+                href: 'https://oi-wiki.org/',
               },
             ],
           },
