@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 20px 10px;
 }
 
 .lilith-lock-card {
@@ -53,13 +53,21 @@
   box-shadow: 0 0 0 3px rgba(255, 123, 208, 0.12);
 }
 
+.lilith-lock-card button,
+.lilith-form button,
+.lilith-ghost-button,
+.lilith-secondary-button,
+.lilith-post-delete {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+
 .lilith-lock-card button {
   margin-top: 18px;
   width: 100%;
-  border: none;
-  border-radius: 12px;
   padding: 14px 16px;
-  cursor: pointer;
   background: linear-gradient(135deg, #be56b4, #7d5cff);
   color: white;
   font-weight: 700;
@@ -67,7 +75,8 @@
   text-transform: uppercase;
 }
 
-.lilith-lock-card button:disabled {
+.lilith-lock-card button:disabled,
+.lilith-form button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -80,22 +89,29 @@
 
 .lilith-shell {
   width: min(980px, 100%);
-  background: rgba(17, 12, 23, 0.88);
+  background: rgba(17, 12, 23, 0.9);
   border: 1px solid rgba(255, 151, 214, 0.35);
-  border-radius: 28px;
+  border-radius: 24px;
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 30px rgba(190, 118, 255, 0.18);
   overflow: hidden;
 }
 
 .lilith-header {
-  padding: 28px 34px 18px;
+  padding: 22px 22px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
 }
 
+.lilith-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 .lilith-header h1 {
   margin: 0;
-  font-size: clamp(2.4rem, 5vw, 5rem);
+  font-size: clamp(2.4rem, 4vw, 4.6rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #f7d8ff;
@@ -110,40 +126,437 @@
   text-transform: uppercase;
 }
 
+.lilith-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.lilith-tab-bar {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 151, 214, 0.24);
+}
+
+.lilith-tab-button {
+  border: none;
+  background: transparent;
+  color: #f5dfff;
+  padding: 9px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.lilith-tab-button-active {
+  background: linear-gradient(135deg, rgba(190, 86, 180, 0.24), rgba(125, 92, 255, 0.28));
+  border: 1px solid rgba(255, 151, 214, 0.32);
+}
+
+.lilith-status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(128, 255, 191, 0.08);
+  border: 1px solid rgba(128, 255, 191, 0.28);
+  color: #d5ffe9;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+}
+
 .lilith-content {
-  padding: 32px 34px 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 16px 26px;
 }
 
 .lilith-panel {
+  width: min(100%, 860px);
   background: linear-gradient(135deg, rgba(60, 31, 77, 0.8), rgba(20, 18, 34, 0.9));
   border: 1px solid rgba(255, 138, 214, 0.25);
-  border-radius: 20px;
-  padding: 28px;
+  border-radius: 18px;
+  padding: 18px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.lilith-panel p {
-  margin: 0 0 18px;
-  font-size: 1.08rem;
-  line-height: 1.9;
+.lilith-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.lilith-panel-header h2 {
+  margin: 0;
+  color: #f6ebff;
+  font-size: 1.45rem;
+}
+
+.lilith-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lilith-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #f1d8ff;
+  font-size: 0.92rem;
+}
+
+.lilith-field input,
+.lilith-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 151, 214, 0.28);
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: #fff;
+  font-size: 1rem;
+  resize: vertical;
+  outline: none;
+}
+
+.lilith-field input:focus,
+.lilith-field textarea:focus {
+  border-color: rgba(255, 181, 228, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 123, 208, 0.12);
+}
+
+.lilith-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lilith-form button,
+.lilith-ghost-button,
+.lilith-secondary-button,
+.lilith-post-delete {
+  padding: 10px 16px;
+  font-weight: 700;
+}
+
+.lilith-form button {
+  background: linear-gradient(135deg, #be56b4, #7d5cff);
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+.lilith-secondary-button,
+.lilith-ghost-button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 151, 214, 0.28);
+  color: #f6d9ff;
+}
+
+.lilith-save-message {
+  margin-top: 6px;
+  color: #dfffe8;
+  font-size: 0.9rem;
+}
+
+.lilith-empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.lilith-primary-button {
+  border: none;
+  background: linear-gradient(135deg, #be56b4, #7d5cff);
+  color: white;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.lilith-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: #d7c6eb;
+  font-size: 0.85rem;
+}
+
+.lilith-selection-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 151, 214, 0.18);
+}
+
+.lilith-selection-count {
+  color: #dfffe8;
+  font-size: 0.82rem;
+}
+
+.lilith-post-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lilith-menu-wrap {
+  position: relative;
+}
+
+.lilith-menu-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 151, 214, 0.28);
+  color: #f9d5ff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.lilith-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  display: none;
+  min-width: 140px;
+  background: rgba(23, 17, 35, 0.98);
+  border: 1px solid rgba(255, 151, 214, 0.28);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.lilith-menu-open {
+  display: flex;
+  flex-direction: column;
+}
+
+.lilith-menu-item {
+  border: none;
+  background: transparent;
+  color: #f5eaff;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lilith-menu-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lilith-menu-item-danger {
+  color: #ffb4b4;
+}
+
+.lilith-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lilith-post-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 151, 214, 0.22);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.lilith-post-item-selected {
+  border-color: rgba(132, 200, 255, 0.8);
+  box-shadow: 0 0 0 1px rgba(132, 200, 255, 0.35);
+}
+
+.lilith-post-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.lilith-post-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.lilith-post-title-wrap h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #fdf4ff;
+  word-break: break-word;
+}
+
+.lilith-select-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #7d5cff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.lilith-ghost-button-danger {
+  border-color: rgba(255, 112, 112, 0.28);
+  color: #ffb4b4;
+}
+
+.lilith-post-delete {
+  background: rgba(255, 112, 112, 0.1);
+  border: 1px solid rgba(255, 112, 112, 0.28);
+  color: #ffb4b4;
+}
+
+.lilith-post-item time {
+  display: block;
+  color: #cdbfe9;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.lilith-post-item p {
+  margin: 0;
   color: #f0e8ff;
+  line-height: 1.8;
+  white-space: pre-wrap;
 }
 
-.lilith-panel p:last-child {
-  margin-bottom: 0;
+.lilith-post-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  color: #eae0ff;
 }
 
-.lilith-tag {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 123, 208, 0.12);
-  border: 1px solid rgba(255, 123, 208, 0.34);
-  color: #ffd7f0;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
+.lilith-detail-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lilith-detail-meta {
+  color: #d8c7eb;
+  font-size: 0.8rem;
+}
+
+.lilith-detail-content {
+  line-height: 1.9;
+  color: #f4ebff;
+  font-size: 1.05rem;
+}
+
+.lilith-detail-content > *:first-child {
+  margin-top: 0;
+}
+
+.lilith-detail-content h1,
+.lilith-detail-content h2,
+.lilith-detail-content h3,
+.lilith-detail-content h4,
+.lilith-detail-content h5,
+.lilith-detail-content h6 {
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+  color: #f9ddff;
+}
+
+.lilith-detail-content p,
+.lilith-detail-content ul,
+.lilith-detail-content ol,
+.lilith-detail-content blockquote,
+.lilith-detail-content pre,
+.lilith-detail-content table {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.lilith-detail-content ul,
+.lilith-detail-content ol {
+  padding-left: 1.5em;
+}
+
+.lilith-detail-content a {
+  color: #a9d8ff;
+}
+
+.lilith-detail-content blockquote {
+  padding-left: 1em;
+  border-left: 3px solid rgba(255, 151, 214, 0.7);
+  color: #e7d6ff;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lilith-detail-content code {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+
+.lilith-detail-content pre {
+  padding: 1em;
+  border-radius: 12px;
+  background: rgba(15, 12, 22, 0.95);
+  border: 1px solid rgba(255, 151, 214, 0.2);
+  overflow-x: auto;
+}
+
+.lilith-detail-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.lilith-detail-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lilith-detail-content th,
+.lilith-detail-content td {
+  border: 1px solid rgba(255, 151, 214, 0.25);
+  padding: 0.6em 0.8em;
+  text-align: left;
+}
+
+.lilith-empty-state {
+  margin: 0;
+  padding: 18px 8px 6px;
+  color: #d4c2f0;
+}
+
+@media (max-width: 880px) {
+  .lilith-content {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 680px) {
@@ -154,6 +567,17 @@
   }
 
   .lilith-panel {
-    padding: 20px 18px;
+    padding: 18px 16px;
+  }
+
+  .lilith-header-row,
+  .lilith-panel-header,
+  .lilith-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lilith-header-actions {
+    justify-content: flex-start;
   }
 }
