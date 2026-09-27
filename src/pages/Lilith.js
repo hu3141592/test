@@ -150,15 +150,37 @@ async function buildExportFilename(post) {
   return `${baseTitle}_${shortHash}.md`;
 }
 
+function formatDisplayTime(value) {
+  const date = new Date(value || Date.now());
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1);
+  const day = String(date.getDate());
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  return `${year}/${month}/${day} - ${hours}:${minutes}:${seconds}`;
+}
+
+function sortPostsByCreatedAt(posts) {
+  return [...posts].sort((a, b) => {
+    const timeA = new Date(a?.created_at || 0).getTime();
+    const timeB = new Date(b?.created_at || 0).getTime();
+    return timeB - timeA;
+  });
+}
+
 function markdownFromPost(post) {
   const title = (post.title || 'untitled').trim() || 'untitled';
   const content = (post.content || '').trim();
   const createdAt = post.created_at || new Date().toISOString();
+  const updatedAt = post.updated_at || createdAt;
 
   return [
     '---',
     `title: "${title.replace(/"/g, '\\"') }"`,
     `created_at: "${createdAt}"`,
+    `updated_at: "${updatedAt}"`,
     `published: true`,
     '---',
     '',
@@ -211,6 +233,7 @@ function parseMarkdownText(rawText, fallbackName) {
         title: headingMatch[1].trim() || frontMatter.title || defaultTitle,
         content: headingMatch[2].trim(),
         created_at: frontMatter.created_at || new Date().toISOString(),
+        updated_at: frontMatter.updated_at || frontMatter.created_at || new Date().toISOString(),
       };
     }
 
@@ -218,6 +241,7 @@ function parseMarkdownText(rawText, fallbackName) {
       title: frontMatter.title || defaultTitle,
       content: remainder,
       created_at: frontMatter.created_at || new Date().toISOString(),
+      updated_at: frontMatter.updated_at || frontMatter.created_at || new Date().toISOString(),
     };
   }
 
@@ -227,10 +251,11 @@ function parseMarkdownText(rawText, fallbackName) {
       title: headingMatch[1].trim() || defaultTitle,
       content: headingMatch[2].trim(),
       created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     };
   }
 
-  return { title: defaultTitle, content, created_at: new Date().toISOString() };
+  return { title: defaultTitle, content, created_at: new Date().toISOString(), updated_at: new Date().toISOString() };
 }
 
 export default function LilithPage() {
@@ -257,7 +282,7 @@ export default function LilithPage() {
       return;
     }
 
-    const unlocked = window.localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    const unlocked = window.sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true';
     const storedDrafts = readStoredDrafts();
     const fallbackDraft = readStoredDraft();
 
@@ -265,7 +290,7 @@ export default function LilithPage() {
     setSessionPassword(unlocked ? 'stored' : '');
     setDrafts(storedDrafts);
     setDraft(storedDrafts[NEW_DRAFT_KEY] || fallbackDraft || emptyDraft);
-    setPosts(readStoredPosts());
+    setPosts(sortPostsByCreatedAt(readStoredPosts()));
   }, []);
 
   useEffect(() => {
@@ -318,7 +343,7 @@ export default function LilithPage() {
       }
 
       if (typeof window !== 'undefined') {
-        window.localStorage.setItem(AUTH_STORAGE_KEY, 'true');
+        window.sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
       }
 
       setSessionPassword(password);
@@ -351,6 +376,8 @@ export default function LilithPage() {
       return nextDrafts;
     });
 
+    setDetailPostId(null);
+
     if (post) {
       setEditingPostId(post.id);
       setDraft(drafts[String(post.id)] || { title: post.title, content: post.content });
@@ -382,14 +409,17 @@ export default function LilithPage() {
 
     try {
       if (editingPostId !== null) {
-        const nextPosts = posts.map((post) =>
-          post.id === editingPostId
-            ? {
-                ...post,
-                title: draft.title.trim(),
-                content: draft.content.trim(),
-              }
-            : post
+        const nextPosts = sortPostsByCreatedAt(
+          posts.map((post) =>
+            post.id === editingPostId
+              ? {
+                  ...post,
+                  title: draft.title.trim(),
+                  content: draft.content.trim(),
+                  updated_at: new Date().toISOString(),
+                }
+              : post
+          )
         );
         writeStoredPosts(nextPosts);
         setPosts(nextPosts);
@@ -400,9 +430,10 @@ export default function LilithPage() {
           title: draft.title.trim(),
           content: draft.content.trim(),
           created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
         };
 
-        const nextPosts = [nextPost, ...posts];
+        const nextPosts = sortPostsByCreatedAt([nextPost, ...posts]);
         writeStoredPosts(nextPosts);
         setPosts(nextPosts);
         setSaveMessage('内容已成功保存到本地');
@@ -432,7 +463,7 @@ export default function LilithPage() {
       return;
     }
 
-    const nextPosts = posts.filter((post) => post.id !== id);
+    const nextPosts = sortPostsByCreatedAt(posts.filter((post) => post.id !== id));
     writeStoredPosts(nextPosts);
     setPosts(nextPosts);
     setSelectedPostIds((prev) => prev.filter((selectedId) => selectedId !== id));
@@ -450,7 +481,7 @@ export default function LilithPage() {
     }
 
     const deletedCount = selectedPostIds.length;
-    const nextPosts = posts.filter((post) => !selectedPostIds.includes(post.id));
+    const nextPosts = sortPostsByCreatedAt(posts.filter((post) => !selectedPostIds.includes(post.id)));
     writeStoredPosts(nextPosts);
     setPosts(nextPosts);
     setSelectedPostIds([]);
@@ -545,6 +576,7 @@ export default function LilithPage() {
               title: parsed.title,
               content: parsed.content,
               created_at: parsed.created_at || new Date().toISOString(),
+              updated_at: parsed.updated_at || parsed.created_at || new Date().toISOString(),
             };
 
             const hash = await articleHashKey(candidate);
@@ -569,6 +601,7 @@ export default function LilithPage() {
             title: parsed.title,
             content: parsed.content,
             created_at: parsed.created_at || new Date().toISOString(),
+            updated_at: parsed.updated_at || parsed.created_at || new Date().toISOString(),
           };
 
           const hash = await articleHashKey(candidate);
@@ -587,7 +620,7 @@ export default function LilithPage() {
         return;
       }
 
-      const nextPosts = [...importedPosts, ...existingPosts];
+      const nextPosts = sortPostsByCreatedAt([...importedPosts, ...existingPosts]);
       writeStoredPosts(nextPosts);
       setPosts(nextPosts);
       setSaveMessage(`已导入 ${importedPosts.length} 篇文章`);
@@ -608,7 +641,7 @@ export default function LilithPage() {
 
   const handleLogout = () => {
     if (typeof window !== 'undefined') {
-      window.localStorage.removeItem(AUTH_STORAGE_KEY);
+      window.sessionStorage.removeItem(AUTH_STORAGE_KEY);
     }
     setSessionPassword('');
     setIsUnlocked(false);
@@ -685,13 +718,21 @@ export default function LilithPage() {
             <section className="lilith-panel lilith-detail-panel">
               <div className="lilith-panel-header">
                 <h2>{detailPost.title}</h2>
-                <button type="button" className="lilith-ghost-button" onClick={() => setDetailPostId(null)}>
-                  返回列表
-                </button>
+                <div className="lilith-detail-actions">
+                  <button type="button" className="lilith-ghost-button" onClick={() => openEditPage(detailPost)}>
+                    编辑
+                  </button>
+                  <button type="button" className="lilith-ghost-button" onClick={() => setDetailPostId(null)}>
+                    返回列表
+                  </button>
+                </div>
               </div>
 
               <div className="lilith-detail-meta">
-                <time>{new Date(detailPost.created_at).toLocaleString()}</time>
+                <div>创建时间：{formatDisplayTime(detailPost.created_at)}</div>
+                {detailPost.updated_at && detailPost.updated_at !== detailPost.created_at && (
+                  <div>最近修改：{formatDisplayTime(detailPost.updated_at)}</div>
+                )}
               </div>
 
               <article className="lilith-detail-content">
@@ -870,7 +911,7 @@ export default function LilithPage() {
                           </div>
                         </div>
                       </div>
-                      <time>{new Date(post.created_at).toLocaleString()}</time>
+                      <time>{formatDisplayTime(post.created_at)}</time>
                       <p className="lilith-post-preview">{previewText(post.content)}</p>
                     </article>
                   ))}

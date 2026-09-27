@@ -150,6 +150,15 @@
   border-radius: 9px;
   cursor: pointer;
   font-weight: 700;
+  transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+
+.lilith-tab-button:hover,
+.lilith-ghost-button:hover,
+.lilith-form button:hover,
+.lilith-primary-button:hover,
+.lilith-menu-button:hover {
+  transform: translateY(-1px);
 }
 
 .lilith-tab-button-active {
@@ -184,6 +193,18 @@
   border-radius: 18px;
   padding: 18px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  animation: lilithFadeSlide 0.22s ease;
+}
+
+@keyframes lilithFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .lilith-panel-header {
@@ -350,11 +371,18 @@
   overflow: hidden;
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .lilith-menu-open {
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .lilith-menu-item {
@@ -385,6 +413,12 @@
   border: 1px solid rgba(255, 151, 214, 0.22);
   border-radius: 16px;
   padding: 16px 18px;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lilith-post-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 151, 214, 0.4);
 }
 
 .lilith-post-item-selected {
@@ -466,6 +500,12 @@
 .lilith-detail-meta {
   color: #d8c7eb;
   font-size: 0.8rem;
+}
+
+.lilith-detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .lilith-detail-content {
