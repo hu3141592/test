@@ -714,122 +714,126 @@ export default function LilithPage() {
         </header>
 
         <main className="lilith-content">
-          {detailPost ? (
-            <section className="lilith-panel lilith-detail-panel">
-              <div className="lilith-panel-header">
-                <h2>{detailPost.title}</h2>
-                <div className="lilith-detail-actions">
-                  <button type="button" className="lilith-ghost-button" onClick={() => openEditPage(detailPost)}>
-                    编辑
-                  </button>
-                  <button type="button" className="lilith-ghost-button" onClick={() => setDetailPostId(null)}>
-                    返回列表
-                  </button>
-                </div>
-              </div>
-
-              <div className="lilith-detail-meta">
-                <div>创建时间：{formatDisplayTime(detailPost.created_at)}</div>
-                {detailPost.updated_at && detailPost.updated_at !== detailPost.created_at && (
-                  <div>最近修改：{formatDisplayTime(detailPost.updated_at)}</div>
-                )}
-              </div>
-
-              <article className="lilith-detail-content">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{detailPost.content}</ReactMarkdown>
-              </article>
-            </section>
-          ) : pageMode === 'view' ? (
-            <section className="lilith-panel lilith-list-panel">
-              <div className="lilith-panel-header">
-                <h2>已发布内容</h2>
-                <div className="lilith-summary">
-                  <span>{posts.length} 篇文章</span>
-                  {posts.length > 0 && (
-                    <button type="button" className="lilith-ghost-button" onClick={handleExportAllPosts}>
-                      导出 ZIP
+          <div
+            key={detailPost ? `detail-${detailPost.id}` : pageMode}
+            className="lilith-scene"
+          >
+            {detailPost ? (
+              <section className="lilith-panel lilith-detail-panel">
+                <div className="lilith-panel-header">
+                  <h2>{detailPost.title}</h2>
+                  <div className="lilith-detail-actions">
+                    <button type="button" className="lilith-ghost-button" onClick={() => openEditPage(detailPost)}>
+                      编辑
                     </button>
+                    <button type="button" className="lilith-ghost-button" onClick={() => setDetailPostId(null)}>
+                      返回列表
+                    </button>
+                  </div>
+                </div>
+
+                <div className="lilith-detail-meta">
+                  <div>创建时间：{formatDisplayTime(detailPost.created_at)}</div>
+                  {detailPost.updated_at && detailPost.updated_at !== detailPost.created_at && (
+                    <div>最近修改：{formatDisplayTime(detailPost.updated_at)}</div>
                   )}
-                  <button
-                    type="button"
-                    className="lilith-ghost-button"
-                    onClick={() => {
-                      if (isSelectionMode) {
-                        setIsSelectionMode(false);
-                        setSelectedPostIds([]);
-                        return;
-                      }
-
-                      setIsSelectionMode(true);
-                    }}
-                  >
-                    批量操作
-                  </button>
-                  <button type="button" className="lilith-ghost-button" onClick={() => fileInputRef.current?.click()}>
-                    导入
-                  </button>
                 </div>
-              </div>
 
-              {posts.length > 0 && isSelectionMode && (
-                <div className="lilith-selection-tools">
-                  <button
-                    type="button"
-                    className="lilith-ghost-button"
-                    onClick={() => {
-                      if (selectedPostIds.length === posts.length) {
-                        setSelectedPostIds([]);
-                      } else {
-                        setSelectedPostIds(posts.map((post) => post.id));
-                      }
-                    }}
-                  >
-                    {selectedPostIds.length === posts.length ? '取消全选' : '全选'}
-                  </button>
-                  <button
-                    type="button"
-                    className="lilith-ghost-button"
-                    onClick={handleBulkExport}
-                    disabled={!selectedPostIds.length}
-                  >
-                    批量导出
-                  </button>
-                  <button
-                    type="button"
-                    className="lilith-ghost-button lilith-ghost-button-danger"
-                    onClick={handleBatchDelete}
-                    disabled={!selectedPostIds.length}
-                  >
-                    批量删除
-                  </button>
-                  {selectedPostIds.length > 0 && <span className="lilith-selection-count">已选 {selectedPostIds.length}</span>}
-                </div>
-              )}
+                <article className="lilith-detail-content">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{detailPost.content}</ReactMarkdown>
+                </article>
+              </section>
+            ) : pageMode === 'view' ? (
+              <section className="lilith-panel lilith-list-panel">
+                <div className="lilith-panel-header">
+                  <h2>已发布内容</h2>
+                  <div className="lilith-summary">
+                    <span>{posts.length} 篇文章</span>
+                    {posts.length > 0 && (
+                      <button type="button" className="lilith-ghost-button" onClick={handleExportAllPosts}>
+                        导出 ZIP
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="lilith-ghost-button"
+                      onClick={() => {
+                        if (isSelectionMode) {
+                          setIsSelectionMode(false);
+                          setSelectedPostIds([]);
+                          return;
+                        }
 
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".md,.zip"
-                multiple
-                hidden
-                onChange={handleImportFiles}
-              />
-
-              {posts.length === 0 ? (
-                <div className="lilith-empty-wrap">
-                  <p className="lilith-empty-state">暂时还没有文章，先写下一篇吧。</p>
-                  <button type="button" className="lilith-primary-button" onClick={() => openEditPage()}>
-                    进入编辑器
-                  </button>
-                </div>
-              ) : (
-                <div className="lilith-posts">
-                  {posts.map((post) => (
-                    <article
-                      key={post.id}
-                      className={`lilith-post-item ${selectedPostIds.includes(post.id) ? 'lilith-post-item-selected' : ''}`}
-                      onClick={() => setDetailPostId(post.id)}
+                        setIsSelectionMode(true);
+                      }}
                     >
+                      批量操作
+                    </button>
+                    <button type="button" className="lilith-ghost-button" onClick={() => fileInputRef.current?.click()}>
+                      导入
+                    </button>
+                  </div>
+                </div>
+
+                {posts.length > 0 && isSelectionMode && (
+                  <div className="lilith-selection-tools">
+                    <button
+                      type="button"
+                      className="lilith-ghost-button"
+                      onClick={() => {
+                        if (selectedPostIds.length === posts.length) {
+                          setSelectedPostIds([]);
+                        } else {
+                          setSelectedPostIds(posts.map((post) => post.id));
+                        }
+                      }}
+                    >
+                      {selectedPostIds.length === posts.length ? '取消全选' : '全选'}
+                    </button>
+                    <button
+                      type="button"
+                      className="lilith-ghost-button"
+                      onClick={handleBulkExport}
+                      disabled={!selectedPostIds.length}
+                    >
+                      批量导出
+                    </button>
+                    <button
+                      type="button"
+                      className="lilith-ghost-button lilith-ghost-button-danger"
+                      onClick={handleBatchDelete}
+                      disabled={!selectedPostIds.length}
+                    >
+                      批量删除
+                    </button>
+                    {selectedPostIds.length > 0 && <span className="lilith-selection-count">已选 {selectedPostIds.length}</span>}
+                  </div>
+                )}
+
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".md,.zip"
+                  multiple
+                  hidden
+                  onChange={handleImportFiles}
+                />
+
+                {posts.length === 0 ? (
+                  <div className="lilith-empty-wrap">
+                    <p className="lilith-empty-state">暂时还没有文章，先写下一篇吧。</p>
+                    <button type="button" className="lilith-primary-button" onClick={() => openEditPage()}>
+                      进入编辑器
+                    </button>
+                  </div>
+                ) : (
+                  <div className="lilith-posts">
+                    {posts.map((post) => (
+                      <article
+                        key={post.id}
+                        className={`lilith-post-item ${selectedPostIds.includes(post.id) ? 'lilith-post-item-selected' : ''}`}
+                        onClick={() => setDetailPostId(post.id)}
+                      >
                       <div className="lilith-post-header">
                         <div className="lilith-post-title-wrap">
                           {isSelectionMode && (
@@ -960,6 +964,7 @@ export default function LilithPage() {
               </form>
             </section>
           )}
+          </div>
         </main>
       </div>
     </div>

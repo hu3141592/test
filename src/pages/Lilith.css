@@ -186,6 +186,12 @@
   padding: 20px 16px 26px;
 }
 
+.lilith-scene {
+  width: min(100%, 860px);
+  animation: lilithSceneSwitch 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
 .lilith-panel {
   width: min(100%, 860px);
   background: linear-gradient(135deg, rgba(60, 31, 77, 0.8), rgba(20, 18, 34, 0.9));
@@ -204,6 +210,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes lilithSceneSwitch {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
