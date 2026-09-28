@@ -689,6 +689,7 @@ export default function LilithPage() {
 
             <div className="lilith-header-actions">
               <div className="lilith-tab-bar">
+                <span className={`lilith-tab-indicator ${pageMode === 'edit' ? 'lilith-tab-indicator-right' : ''}`} />
                 <button
                   type="button"
                   className={`lilith-tab-button ${pageMode === 'view' ? 'lilith-tab-button-active' : ''}`}
