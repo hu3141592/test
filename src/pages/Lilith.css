@@ -1,11 +1,41 @@
 .lilith-lock-page,
 .lilith-page {
+  --lilith-bg-start: #0d0718;
+  --lilith-bg-end: #120d1c;
+  --lilith-bg-pink: rgba(255, 110, 196, 0.18);
+  --lilith-bg-violet: rgba(116, 92, 255, 0.16);
+  --lilith-card-bg: rgba(17, 12, 23, 0.9);
+  --lilith-card-border: rgba(255, 151, 214, 0.35);
+  --lilith-card-shadow: rgba(0, 0, 0, 0.45);
+  --lilith-glow: rgba(190, 118, 255, 0.18);
+  --lilith-text: #f6ebff;
+  --lilith-text-soft: #c9b6d9;
+  --lilith-text-strong: #f7d8ff;
+  --lilith-text-subtle: #d7c6eb;
+  --lilith-rose: #ff97d6;
+  --lilith-rose-bright: #ffb5e4;
+  --lilith-rose-deep: #be56b4;
+  --lilith-violet: #7d5cff;
+  --lilith-violet-soft: rgba(125, 92, 255, 0.28);
+  --lilith-ink: #fff;
+  --lilith-panel-bg: linear-gradient(135deg, rgba(60, 31, 77, 0.8), rgba(20, 18, 34, 0.9));
+  --lilith-field-bg: rgba(255, 255, 255, 0.04);
+  --lilith-field-border: rgba(255, 151, 214, 0.28);
+  --lilith-focus-ring: rgba(255, 123, 208, 0.12);
+  --lilith-success: #d5ffe9;
+  --lilith-hint: #d8c7eb;
+  --lilith-danger: #ffb4b4;
+  --lilith-menu-bg: rgba(23, 17, 35, 0.98);
+  --lilith-selected: rgba(132, 200, 255, 0.8);
+  --lilith-selected-glow: rgba(132, 200, 255, 0.35);
+  --lilith-button-text: #fff;
+
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255, 110, 196, 0.18), transparent 24%),
-    radial-gradient(circle at 80% 10%, rgba(116, 92, 255, 0.16), transparent 26%),
-    linear-gradient(180deg, #0d0718 0%, #120d1c 100%);
-  color: #f6ebff;
+    radial-gradient(circle at 20% 20%, var(--lilith-bg-pink), transparent 24%),
+    radial-gradient(circle at 80% 10%, var(--lilith-bg-violet), transparent 26%),
+    linear-gradient(180deg, var(--lilith-bg-start) 0%, var(--lilith-bg-end) 100%);
+  color: var(--lilith-text);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
@@ -15,10 +45,10 @@
 
 .lilith-lock-card {
   width: min(420px, 100%);
-  background: rgba(17, 12, 23, 0.9);
-  border: 1px solid rgba(255, 151, 214, 0.35);
+  background: var(--lilith-card-bg);
+  border: 1px solid var(--lilith-card-border);
   border-radius: 26px;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 28px rgba(190, 118, 255, 0.18);
+  box-shadow: 0 20px 80px var(--lilith-card-shadow), 0 0 28px var(--lilith-glow);
   padding: 28px 24px;
 }
 
@@ -27,30 +57,30 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: #c9b6d9;
+  color: var(--lilith-text-soft);
 }
 
 .lilith-lock-card h1 {
   margin: 0 0 20px;
   font-size: 2rem;
-  color: #f7d8ff;
+  color: var(--lilith-text-strong);
 }
 
 .lilith-lock-card input {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 151, 214, 0.35);
+  background: var(--lilith-field-bg);
+  border: 1px solid var(--lilith-card-border);
   border-radius: 12px;
   padding: 14px 16px;
-  color: #fff;
+  color: var(--lilith-ink);
   font-size: 1rem;
   outline: none;
 }
 
 .lilith-lock-card input:focus {
   border-color: rgba(255, 181, 228, 0.8);
-  box-shadow: 0 0 0 3px rgba(255, 123, 208, 0.12);
+  box-shadow: 0 0 0 3px var(--lilith-focus-ring);
 }
 
 .lilith-lock-card button,
@@ -68,8 +98,8 @@
   margin-top: 18px;
   width: 100%;
   padding: 14px 16px;
-  background: linear-gradient(135deg, #be56b4, #7d5cff);
-  color: white;
+  background: linear-gradient(135deg, var(--lilith-rose-deep), var(--lilith-violet));
+  color: var(--lilith-button-text);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -83,16 +113,16 @@
 
 .lilith-lock-error {
   margin-top: 14px;
-  color: #ffb7d3;
+  color: var(--lilith-rose-bright);
   font-size: 0.9rem;
 }
 
 .lilith-shell {
   width: min(980px, 100%);
-  background: rgba(17, 12, 23, 0.9);
-  border: 1px solid rgba(255, 151, 214, 0.35);
+  background: var(--lilith-card-bg);
+  border: 1px solid var(--lilith-card-border);
   border-radius: 24px;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45), 0 0 30px rgba(190, 118, 255, 0.18);
+  box-shadow: 0 20px 80px var(--lilith-card-shadow), 0 0 30px var(--lilith-glow);
   overflow: hidden;
 }
 
@@ -114,7 +144,7 @@
   font-size: clamp(2.4rem, 4vw, 4.6rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #f7d8ff;
+  color: var(--lilith-text-strong);
   text-shadow: 0 0 18px rgba(255, 122, 210, 0.7);
 }
 
@@ -180,7 +210,8 @@
 .lilith-form button:hover,
 .lilith-primary-button:hover,
 .lilith-menu-button:hover {
-  transform: translateY(-1px);
+  border-color: rgba(255, 151, 214, 0.42);
+  box-shadow: 0 0 0 1px rgba(255, 151, 214, 0.14);
 }
 
 .lilith-tab-button-active {
@@ -226,8 +257,8 @@
 }
 
 .lilith-panel:hover {
-  transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 16px 34px rgba(46, 20, 57, 0.2);
+  border-color: rgba(255, 151, 214, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 10px 24px rgba(46, 20, 57, 0.16);
 }
 
 @keyframes lilithFadeSlide {
@@ -462,8 +493,9 @@
 }
 
 .lilith-post-item:hover {
-  transform: translateY(-1px);
-  border-color: rgba(255, 151, 214, 0.4);
+  transform: translateY(-2px);
+  border-color: rgba(255, 151, 214, 0.48);
+  box-shadow: 0 12px 24px rgba(46, 20, 57, 0.18);
 }
 
 .lilith-post-item-selected {
